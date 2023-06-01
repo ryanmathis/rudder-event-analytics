@@ -1,11 +1,10 @@
-
 # Creating a unified customer view from your RudderStack rudder tables;
-name: 'dbt_rudderstack_metrics'
-version: '1.0.0'
+name: "dbt_rudderstack_metrics"
+version: "1.0.0"
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'rudderstack_analytics'
+profile: "rudderstack_analytics"
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -17,35 +16,31 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
+target-path: "target" # directory which will store compiled SQL files
+clean-targets: # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
-
 
 models:
   dbt_rudderstack_metrics:
     materialized: table
 
-
-
 vars:
-  rs_database: '<REPLACE WITH YOUR DB NAME>'    #This is the name of database where the RudderStack tables are all stored
-  rs_schema: '<REPLACE WITH YOUR SCHEMA NAME>'     #This is the name of schema where the RudderStack tables are all stored
+  rs_database: "cdp-integrations" #This is the name of database where the RudderStack tables are all stored
+  rs_schema: "rudderstack" #This is the name of schema where the RudderStack tables are all stored
   main_id: anonymous_id
-  start_dt: '2010-01-01'
+  start_dt: "2010-01-01"
   col_timestamp: "{{timestamp_call('timestamp')}}"
-  col_session_id: 'context_session_id'
-  col_referrer: 'context_page_referrer'
-  col_referring_domain: 'context_page_referring_domain'
-  col_utm_source: 'context_campaign_source'
-  col_utm_medium: 'context_campaign_medium'
-  col_screen_height: 'context_screen_height'
-  col_screen_width: 'context_screen_width'
-  
+  col_session_id: "context_session_id"
+  col_referrer: "context_page_referrer"
+  col_referring_domain: "context_page_referring_domain"
+  col_utm_source: "context_campaign_source"
+  col_utm_medium: "context_campaign_medium"
+  col_screen_height: "context_screen_height"
+  col_screen_width: "context_screen_width"
 
   # All below variables pertain to table names and column names. If the event tracking plan is followed perfectly, it ideally shouldn't need any modifications below.
-  
+
   #table rudder identifies
   tbl_rudder_identifies: "{{ source('rudder', 'identifies') }}"
 
