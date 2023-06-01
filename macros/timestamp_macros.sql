@@ -43,11 +43,11 @@
 {% endif %} 
 {% endmacro %}
 
-
 {% macro to_date(timestamp_col) %}
 {% if target.type == 'snowflake' %}
     to_date({{timestamp_col}})
 {% elif target.type == 'redshift' %}
     trunc({{timestamp_col}})
+{% else %}
+   {{timestamp_col}}
 {% endif %}
-{% endmacro %}
