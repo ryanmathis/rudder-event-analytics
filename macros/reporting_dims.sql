@@ -15,8 +15,8 @@ with
                 then 'direct'
                 else
                     regexp_replace(
-                        regexp_replace({{ var('col_referring_domain') }}, '^www\.', ''),
-                        '\.com(\.\w+)?$|\.co(\.\w+)?$|\.org$',
+                        regexp_replace({{ var('col_referring_domain') }}, r'^www\.', ''),
+                        r'\.com(\.\w+)?$|\.co(\.\w+)?$|\.org$',
                         ''
                     )
             end as referrer,
