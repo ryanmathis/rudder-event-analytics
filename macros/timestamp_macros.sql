@@ -51,3 +51,4 @@
 {% else %}
    {{timestamp_col}}
 {% endif %}
+{% endmacro %}
