@@ -1,7 +1,7 @@
 with
     cte_session_info as (
         select
-            *, datediff(second, session_start_time, session_end_time) as session_length
+            *, date_diff(session_start_time, session_end_time, second) as session_length
         from
             (
                 select
